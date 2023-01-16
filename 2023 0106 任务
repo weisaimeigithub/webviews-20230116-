@@ -1,0 +1,13 @@
+1.如何快速方便地禁用我的代码中的所有console.log语句？
+ans: 在全局代码中写入如下语句
+ var DEBUG = false;
+        if(!DEBUG){
+            if(!window.console) window.console = {};
+            var methods = ['log','debug','warn','info'];
+            for(var i=0;i<methods.length;i++){
+                console[methods[i]] = function(){};
+            }
+        }
+        
+ 
+2. Array.prototype.reduce是一个同步的方法，允许我们同步地进行操作。如果我要实现异步reduce呢？
