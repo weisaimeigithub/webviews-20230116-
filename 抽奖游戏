@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+        }
+
+        #box div{
+            width: 98px;
+            height: 98px;
+            line-height: 98px;
+            border: 1px solid red;
+            text-align: center;
+            position: absolute;
+        }
+
+        #box div:nth-child(2){
+            left: 100px;
+        }
+
+        #box div:nth-child(3){
+            left: 200px;
+        }
+
+        #box div:nth-child(4){
+            top: 100px;
+        }
+        #box div:nth-child(5){
+            top: 200px;
+        }
+
+        #box div:nth-child(6){
+            top: 200px;
+            left: 100px;
+        }
+        #box div:nth-child(7){
+            top: 200px;
+            left: 200px;
+        }
+
+        #box div:nth-child(8){
+            top: 100px;
+            left: 200px;
+        }
+
+
+        #box input{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 98px;
+            height: 98px;
+            border: 1px solid red;
+        }
+
+        .red{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>一等奖</div>
+        <div>二等奖</div>
+        <div>三等奖</div>
+        <div>四等奖</div>
+        <div>五等奖</div>
+        <div>六等奖</div>
+        <div>七等奖</div>
+        <div>八等奖</div>
+        <input type="button"  id="startBtn"   value="开始">
+    </div>
+    <h2></h2>
+    <script  type="text/javascript">
+          var box = document.getElementById('box');
+          var allDiv = box.getElementsByTagName('div');
+          var startBtn = document.getElementById('startBtn');
+          var scoreH2 = document.getElementsByTagName('h2')[0];
+        //   var timer = null;
+          startBtn.onclick = function(){
+            scoreH2.innerHTML = '';
+            //  var idx = Math.ceil(Math.random()*8);//1~8
+            var idx = Math.ceil(Math.random()*24);//1~8
+             var k = 0;
+             //在有限的时间内循环遍历
+             timer = setInterval(function(){
+                  for(var i = 0;i < allDiv.length;i++){
+                    allDiv[i].className = '';
+                  }
+                  if(k == idx-1){
+                      clearTimeout(timer); //停止
+                      scoreH2.innerHTML = "恭喜你中了" +(idx%8?idx%8:8)+ "等奖"
+                  }
+                  allDiv[k%8].className = 'red';
+                  k++;
+             },300);
+             
+          }
+
+    </script>
+</body>
+</html>
